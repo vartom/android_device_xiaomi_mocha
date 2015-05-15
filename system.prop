@@ -1,0 +1,46 @@
+#
+# system.prop for mocha
+#
+# usb vendor and product ID definition
+ro.nv.usb.vid = 2717
+ro.nv.usb.pid.mtp = 0660
+ro.nv.usb.pid.mtp.adb = 0668
+ro.nv.usb.pid.rndis = 0680
+ro.nv.usb.pid.rndis.adb = 0688
+ro.nv.usb.pid.ptp = 0610
+ro.nv.usb.pid.ptp.adb = 0618
+
+# disable strict mode
+persist.sys.strictmode.disable=true
+
+#set no ril
+ro.radio.noril=yes
+
+# set default power mode
+persist.sys.aries.power_profile=middle
+persist.sys.NV_POWER_MODE=1
+
+# enable auto-brightness adjustment
+persist.power.useautobrightadj=true
+
+# button jack mode & switch
+persist.sys.button_jack_profile=volume
+persist.sys.button_jack_switch=0
+
+# media button for headset hook
+persist.sys.button_headset_hook=media
+
+# wait time before close audio stream
+ro.audio.flinger_standbytime_ms=500
+
+# System prop to select audio resampler quality
+af.resampler.quality=3
+
+# app profiling
+persist.sys.NV_OEM_PROFILE_NAME=/system/etc/profile.bin
+
+ro.btconfig.if=uart
+ro.btconfig.dev=/dev/ttyTHS2
+ro.btconfig.vendor=broadcom
+ro.btconfig.chip=BCM4354
+ro.wlan.mimo=1

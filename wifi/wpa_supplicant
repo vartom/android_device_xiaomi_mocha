@@ -1,0 +1,5 @@
+#!/system/bin/sh
+# we need this shit to bring bcmdhd power up before launching actual supplicant
+# faust93 at monumentum@gmail.com
+ifconfig wlan0 up
+/system/bin/wpa_supplicant.bin -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf -z /data/misc/wifi/p2p_supplicant.conf -O/data/misc/wifi/sockets -e/data/misc/wifi/entropy.bin -puse_p2p_group_interface=1p2p_device=1 -g@android:wpa_wlan0 
