@@ -94,9 +94,9 @@ PRODUCT_COPY_FILES += \
 
 # idc
 PRODUCT_COPY_FILES += \
-  $(LOCAL_PATH)/idc/touch.idc:system/usr/idc/touch.idc \
-  $(LOCAL_PATH)/idc/touch_fusion.idc:system/usr/idc/touch_fusion.idc \
-  $(LOCAL_PATH)/idc/sensor00fn11.idc:system/usr/idc/sensor00fn11.idc
+	$(LOCAL_PATH)/idc/touch.idc:system/usr/idc/touch.idc \
+	$(LOCAL_PATH)/idc/touch_fusion.idc:system/usr/idc/touch_fusion.idc \
+	$(LOCAL_PATH)/idc/sensor00fn11.idc:system/usr/idc/sensor00fn11.idc
 
 # keylayout
 PRODUCT_COPY_FILES += \
@@ -113,16 +113,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audioConfig_qvoice_icera_pc400.xml:system/etc/audioConfig_qvoice_icera_pc400.xml \
     $(LOCAL_PATH)/audio/nvaudio_conf.xml:system/etc/nvaudio_conf.xml \
-    $(LOCAL_PATH)/audio/nvaudio_fx.xml:system/etc/nvaudio_fx.xml
-
-ifeq ($(BOARD_USES_STOCK_POLICY),)
-PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_policy_stock.conf:system/etc/audio_policy.conf \
-    $(LOCAL_PATH)/audio/audio_policy.tegra.so:system/lib/hw/audio_policy.tegra.so
-else
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf
-endif
+    $(LOCAL_PATH)/audio/nvaudio_fx.xml:system/etc/nvaudio_fx.xml
 
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
@@ -150,20 +142,19 @@ PRODUCT_COPY_FILES += \
 
 # Wifi
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/wifi/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
-    $(LOCAL_PATH)/wifi/wpa_supplicant:system/bin/wpa_supplicant \
-    $(LOCAL_PATH)/wifi/wpa_supplicant.bin:system/bin/wpa_supplicant.bin \
-    $(LOCAL_PATH)/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
-
+    $(LOCAL_PATH)/wifi/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf 
+    
 PRODUCT_PACKAGES += \
-    libnetcmdiface
+	libnetcmdiface
+	wpa_supplicant \
+	wpa_supplicant.conf
 
 # Enable Widevine drm
 PRODUCT_PROPERTY_OVERRIDES += drm.service.enabled=true
 
 # Light
-#PRODUCT_PACKAGES += \
-#    lights.tegra
+PRODUCT_PACKAGES += \
+    lights.tegra
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -218,7 +209,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     pbc.gpu.power=/sys/bus/i2c/devices/7-004b/power1_input \
     pbc.gpu.cap=/dev/gpu_freq_max \
     pbc.gpu.cap.af=/sys/devices/platform/host1x/gk20a.0/devfreq/gk20a.0/available_frequencies \
-    af.resampler.quality = 3
+    af.resampler.quality = 4
 #    persist.tegra.didim.enable = 1 \
 #    persist.tegra.didim.video = 5 \
 #    persist.tegra.didim.normal = 3
