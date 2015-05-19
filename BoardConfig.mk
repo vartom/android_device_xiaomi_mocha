@@ -1,18 +1,17 @@
-USE_CAMERA_STUB := true
 
-# inherit from the proprietary version
--include vendor/xiaomi/mocha/BoardConfigVendor.mk
+TARGET_SPECIFIC_HEADER_PATH := device/xiaomi/mocha/include
 
-TARGET_ARCH := arm
-TARGET_NO_BOOTLOADER := true
-TARGET_BOARD_PLATFORM := tegra
+# Architecture
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
+TARGET_ARCH := arm
+TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_VARIANT := cortex-a15
-TARGET_ARCH_VARIANT := armv7-a
-ARCH_ARM_HAVE_TLS_REGISTER := true
 
-TARGET_BOOTLOADER_BOARD_NAME := mocha
+# Board
+TARGET_BOARD_PLATFORM := tegra
+TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
 
 BOARD_KERNEL_CMDLINE := 
 BOARD_KERNEL_BASE := 0x10000000
@@ -20,8 +19,6 @@ BOARD_KERNEL_PAGESIZE := 2048
 
 
 BOARD_USE_CUSTOM_RECOVERY_FONT :=  \"roboto_23x41.h\"
-TARGET_SCREEN_HEIGHT := 1200
-TARGET_SCREEN_WIDTH := 1920
 BRIGHTNESS_SYS_FILE := /sys/class/leds/button-backlight/brightness	  
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -34,12 +31,12 @@ BOARD_BOOTIMAGE_PARTITION_SIZE := 20971520
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 20971520
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 671088640
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 13742637056
-BOARD_FLASH_BLOCK_SIZE := 131072
+BOARD_FLASH_BLOCK_SIZE := 4096
 
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
 #BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
-TARGET_RECOVERY_LCD_BACKLIGHT_PATH := \"/sys/class/backlight/pwm-backlight/brightness\"
+TARGET_RECOVERY_LCD_BACKLIGHT_PATH := \"/sys/class/backlight/lcd-backlight/brightness\"
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/xiaomi/mocha/recovery/recovery_keys.c
 TARGET_RECOVERY_FSTAB := device/xiaomi/mocha/recovery.fstab
@@ -55,6 +52,11 @@ ARD_CUSTOM_RECOVERY_UI := \
 
 # Graphics
 USE_OPENGL_RENDERER := true
+BOARD_DISABLE_TRIPLE_BUFFERED_DISPLAY_SURFACES := true
+
+# Per-application sizes for shader cache
+MAX_EGL_CACHE_SIZE := 4194304
+MAX_EGL_CACHE_ENTRY_SIZE := 262144
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -76,6 +78,48 @@ WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path
 #WIFI_DRIVER_MODULE_ARG           := "iface_name=wlan0"
 #WIFI_DRIVER_MODULE_NAME          := "bcmdhd"
 
-BOARD_USES_STOCK_POLICY := true
-
 BOARD_HARDWARE_CLASS := device/xiaomi/mocha/cmhw/
+
+# SELinux
+BOARD_SEPOLICY_DIRS += device/xiaomi/mocha/sepolicy
+BOARD_SEPOLICY_UNION += \
+	te_macros \
+	app.te \
+	bluetooth.te \
+	bootanim.te \
+	cvc.te \
+	device.te \
+	domain.te \
+	drmserver.te \
+	file_contexts \
+	file.te \
+	genfs_contexts \
+	gpload.te \
+	gpsd.te \
+	hostapd.te \
+	installd.te \
+	mediaserver.te \
+	netd.te \
+	platform_app.te \
+	property_contexts \
+	property.te \
+	raydium.te \
+	recovery.te \
+	service.te \
+	service_contexts \
+	set_hwui.te \
+	shell.te \
+	surfaceflinger.te \
+	system_app.te \
+	system_server.te \
+	tee.te \
+	ueventd.te \
+	untrusted_app.te \
+	usb.te \
+	ussrd.te \
+	ussr_setup.te \
+	vold.te \
+	wifi_loader.te \
+	wpa.te \
+	zygote.te \
+	healthd.te
