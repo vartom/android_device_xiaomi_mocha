@@ -32,15 +32,16 @@ PRODUCT_PACKAGES += \
     init.t124.rc \
     init.tlk.rc \
     init.nv_dev_board.usb.rc \
-    power.mocha.rc \
-    ueventd.mocha.rc
+	init.none.rc\
+	power.mocha.rc \
+	ueventd.mocha.rc
 
 PRODUCT_COPY_FILES += \
     device/xiaomi/mocha/rootdir/etc/init:root/init \
     device/xiaomi/mocha/rootdir/etc/init.rc:root/init.rc \
     device/xiaomi/mocha/rootdir/sbin/healthd:root/sbin/healthd \
     device/xiaomi/mocha/rootdir/sbin/chargeonlymode:root/sbin/chargeonlymode \
-    device/xiaomi/mocha/rootdir/sbin/mdbd:root/sbin/mdbd
+
 
 # Enable repeatable keys in CWM
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -48,9 +49,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
-#$(call inherit-product-if-exists, vendor/xiaomi/mocha/mocha-vendor.mk)
-
-DEVICE_PACKAGE_OVERLAYS += device/xiaomi/mocha/overlay
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 LOCAL_KERNEL := device/xiaomi/mocha/kernel
@@ -63,8 +61,6 @@ PRODUCT_COPY_FILES += \
 
 $(call inherit-product,  $(SRC_TARGET_DIR)/product/full_base.mk)
 
-PRODUCT_PACKAGES += \
-    init.none.rc
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -113,13 +109,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audioConfig_qvoice_icera_pc400.xml:system/etc/audioConfig_qvoice_icera_pc400.xml \
     $(LOCAL_PATH)/audio/nvaudio_conf.xml:system/etc/nvaudio_conf.xml \
-    $(LOCAL_PATH)/audio/audio_policy_stock.conf:system/etc/audio_policy.conf \
+    $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/audio/nvaudio_fx.xml:system/etc/nvaudio_fx.xml
 
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.usb.default \
     libaudio-resampler \
+    libtinycompress \
     tinycap \
     tinymix \
     tinyplay \
@@ -145,7 +142,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf 
     
 PRODUCT_PACKAGES += \
-	libnetcmdiface
+	hostapd \
 	wpa_supplicant \
 	wpa_supplicant.conf
 
@@ -161,8 +158,6 @@ PRODUCT_PACKAGES += \
     charger \
     charger_res_images
 
-# we have enough storage space to hold precise GC data
-PRODUCT_TAGS += dalvik.gc.type-precise
 
 PRODUCT_CHARACTERISTICS := tablet
 
@@ -173,6 +168,10 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
+
+# Enable USB OTG interface
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.isUsbOtgEnabled=1
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
@@ -210,13 +209,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     pbc.gpu.cap=/dev/gpu_freq_max \
     pbc.gpu.cap.af=/sys/devices/platform/host1x/gk20a.0/devfreq/gk20a.0/available_frequencies \
     af.resampler.quality = 4
-#    persist.tegra.didim.enable = 1 \
-#    persist.tegra.didim.video = 5 \
-#    persist.tegra.didim.normal = 3
 
 PRODUCT_PREBUILT_WEBVIEWCHROMIUM := true
 
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=1417730315
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_NAME := full_mocha
 PRODUCT_DEVICE := mocha
 
