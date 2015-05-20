@@ -20,9 +20,6 @@ bin/secure_otf
 bin/secure_rtc
 bin/sensor_select.sh
 bin/set_light_sensor_perm.sh
-bin/smonsir
-bin/smprosrv
-bin/immvibed
 bin/ussr_setup.sh
 bin/wlbwservice
 etc/firmware/BCM4350C0.hcd
@@ -101,7 +98,6 @@ lib/modules/mac80211.ko
 lib/modules/raw_ip_net.ko
 lib/modules/tcrypt.ko
 lib/modules/texfat.ko
-lib/soundfx/libdirac.so
 lib/nvcms/device.cfg
 lib/libDiracAPI_SHARED.so
 lib/para_10_02_00_20.so
@@ -375,7 +371,6 @@ vendor/bin/tlk_daemon
 vendor/bin/touch_fusion
 vendor/bin/touch_fusion_rd
 vendor/bin/ussrd
-vendor/etc/diracmobile.config
 vendor/firmware/maxim_fp35.bin
 vendor/firmware/touch_fusion.cfg
 vendor/lib/drm/libdrmwvmplugin.so
