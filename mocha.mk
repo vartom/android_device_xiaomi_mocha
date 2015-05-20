@@ -10,7 +10,7 @@ TARGET_SCREEN_HEIGHT := 2048
 TARGET_SCREEN_WIDTH := 1536
 
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
-$(call inherit-product-if-exists, vendor/xiaomi/mocha/mocha-vendor.mk)
+$(call inherit-product-if-exists, vendor/Xiaomi/mocha/mocha-vendor.mk)
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += \
@@ -23,15 +23,15 @@ PRODUCT_COPY_FILES +=  \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
-    fstab.mocha \
-    init.mocha.rc \
-    init.t124_emmc.rc \
-    init.t124_sata.rc \
-    init.cal.rc \
-    init.hdcp.rc \
-    init.t124.rc \
-    init.tlk.rc \
-    init.nv_dev_board.usb.rc \
+	fstab.mocha \
+	init.mocha.rc \
+	init.t124_emmc.rc \
+	init.t124_sata.rc \
+	init.cal.rc \
+	init.hdcp.rc \
+	init.t124.rc \
+	init.tlk.rc \
+	init.nv_dev_board.usb.rc \
 	init.none.rc\
 	power.mocha.rc \
 	ueventd.mocha.rc
