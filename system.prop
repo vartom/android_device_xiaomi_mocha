@@ -34,7 +34,7 @@ persist.sys.button_headset_hook=media
 ro.audio.flinger_standbytime_ms=500
 
 # System prop to select audio resampler quality
-af.resampler.quality=3
+af.resampler.quality=4
 
 # app profiling
 persist.sys.NV_OEM_PROFILE_NAME=/system/etc/profile.bin
