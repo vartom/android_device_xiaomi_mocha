@@ -29,8 +29,6 @@ on fs
     chmod 0400 /persist/serialno
 
 on post-fs-data
-    chown system system /dev/sysmatdrv
-    chmod 0660 /dev/sysmatdrv
     insmod /system/lib/modules/texfat.ko
 
 on boot
@@ -56,17 +54,6 @@ on init
     export VIBE_PIPE_PATH /dev/pipes
     mkdir /dev/pipes 0771 system system
 
-service sysmatsir /system/bin/smonsir
-    user root
-    group root
-    oneshot
-    disabled
-
-service sysmatpro /system/bin/smprosrv
-    user root
-    group root
-    oneshot
-    disabled
 
 service charger /sbin/chargeonlymode
     class charger
@@ -86,9 +73,5 @@ on property:persist.sys.aries.power_profile=middle
 on property:persist.sys.aries.power_profile=low
     start nv_power
 
-on property:persist.sys.matsir.enable=1
-    setprop sys.sysmat.service.control start
-    start sysmatsir
-    start sysmatpro
 
 
