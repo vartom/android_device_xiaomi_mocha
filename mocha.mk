@@ -17,7 +17,6 @@ DEVICE_PACKAGE_OVERLAYS += \
     device/xiaomi/mocha/overlay
 
 PRODUCT_COPY_FILES +=  \
-      device/xiaomi/mocha/rootdir/etc/init:recovery/root/init \
       device/xiaomi/mocha/rootdir/sbin/e2fsck_static:recovery/root/sbin/e2fsck_static
 
 
@@ -37,7 +36,6 @@ PRODUCT_PACKAGES += \
 	ueventd.mocha.rc
 
 PRODUCT_COPY_FILES += \
-    device/xiaomi/mocha/rootdir/etc/init:root/init \
     device/xiaomi/mocha/rootdir/etc/init.rc:root/init.rc \
     device/xiaomi/mocha/rootdir/sbin/healthd:root/sbin/healthd \
     device/xiaomi/mocha/rootdir/sbin/chargeonlymode:root/sbin/chargeonlymode \
@@ -46,8 +44,6 @@ PRODUCT_COPY_FILES += \
 # Enable repeatable keys in CWM
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.cwm.enable_key_repeat=true
-
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
@@ -58,8 +54,6 @@ endif
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
-
-$(call inherit-product,  $(SRC_TARGET_DIR)/product/full_base.mk)
 
 
 # Permissions
