@@ -6,8 +6,11 @@
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG += normal hdpi xhdpi xxhdpi
+PRODUCT_AAPT_PREF_CONFIG := xhdpi
 TARGET_SCREEN_HEIGHT := 2048
 TARGET_SCREEN_WIDTH := 1536
+PRODUCT_CHARACTERISTICS := tablet
+
 
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
 $(call inherit-product-if-exists, vendor/Xiaomi/mocha/mocha-vendor.mk)
@@ -36,8 +39,7 @@ PRODUCT_PACKAGES += \
 	ueventd.mocha.rc
 
 PRODUCT_COPY_FILES += \
-    device/xiaomi/mocha/rootdir/etc/init.rc:root/init.rc \
-    device/xiaomi/mocha/rootdir/sbin/healthd:root/sbin/healthd \
+	device/xiaomi/mocha/rootdir/sbin/healthd:root/sbin/healthd \
     device/xiaomi/mocha/rootdir/sbin/chargeonlymode:root/sbin/chargeonlymode \
 
 
@@ -97,7 +99,13 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     $(LOCAL_PATH)/keylayout/Vendor_0955_Product_7210.kl:system/usr/keylayout/Vendor_0955_Product_7210.kl
 
-
+# Media config
+PRODUCT_COPY_FILES += \
+    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
+    $(LOCAL_PATH)/media/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/media/media_profiles.xml:system/etc/media_profiles.xml
 
 # Audio
 PRODUCT_COPY_FILES += \
@@ -152,9 +160,6 @@ PRODUCT_PACKAGES += \
     charger \
     charger_res_images
 
-
-PRODUCT_CHARACTERISTICS := tablet
-
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
@@ -203,10 +208,4 @@ PRODUCT_PROPERTY_OVERRIDES += \
     pbc.gpu.cap=/dev/gpu_freq_max \
     pbc.gpu.cap.af=/sys/devices/platform/host1x/gk20a.0/devfreq/gk20a.0/available_frequencies \
     af.resampler.quality = 4
-
-PRODUCT_PREBUILT_WEBVIEWCHROMIUM := true
-
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-PRODUCT_NAME := full_mocha
-PRODUCT_DEVICE := mocha
 
