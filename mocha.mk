@@ -42,6 +42,8 @@ PRODUCT_COPY_FILES += \
 	device/xiaomi/mocha/rootdir/sbin/healthd:root/sbin/healthd \
     device/xiaomi/mocha/rootdir/sbin/chargeonlymode:root/sbin/chargeonlymode \
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/dt.img:dt.img
 
 # Enable repeatable keys in CWM
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -208,4 +210,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
     pbc.gpu.cap=/dev/gpu_freq_max \
     pbc.gpu.cap.af=/sys/devices/platform/host1x/gk20a.0/devfreq/gk20a.0/available_frequencies \
     af.resampler.quality = 4
-
