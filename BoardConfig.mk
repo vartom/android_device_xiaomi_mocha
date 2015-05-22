@@ -46,7 +46,10 @@ RECOVERY_GRAPHICS_USE_LINELENGTH := true
 
 TARGET_PREBUILT_KERNEL := device/xiaomi/mocha/kernel
 
-ARD_CUSTOM_RECOVERY_UI := \
+BOARD_KERNEL_SEPARATED_DT := true
+BOARD_MKBOOTIMG_ARGS := --dt device/xiaomi/mocha/dt.img
+
+BOARD_CUSTOM_RECOVERY_UI := \
 	../../device/xiaomi/mocha/recovery/dualboot.c \
 	../../device/xiaomi/mocha/recovery/recovery_ui.c
 
