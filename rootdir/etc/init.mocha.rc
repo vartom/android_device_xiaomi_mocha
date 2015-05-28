@@ -69,5 +69,10 @@ on property:persist.sys.power_profile=1
 on property:persist.sys.power_profile=0
     start nv_power
 
-
+on charger
+    setprop persist.sys.usb.config mtp
+    mount ext4 /dev/block/platform/sdhci-tegra.3/by-name/APP /system wait ro
+    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/enable 1
+    write /sys/devices/system/cpu/cpuquiet/current_governor runnable
+    write /sys/devices/system/cpu/cpuquiet/tegra_cpuquiet/no_lp -1
 
