@@ -28,7 +28,6 @@ PRODUCT_PACKAGES += \
 	fstab.mocha \
 	init.mocha.rc \
 	init.t124_emmc.rc \
-	init.t124_sata.rc \
 	init.cal.rc \
 	init.hdcp.rc \
 	init.t124.rc \
@@ -38,10 +37,7 @@ PRODUCT_PACKAGES += \
 	power.mocha.rc \
 	ueventd.mocha.rc
 
-PRODUCT_COPY_FILES += \
-	device/xiaomi/mocha/rootdir/sbin/healthd:root/sbin/healthd \
-    device/xiaomi/mocha/rootdir/sbin/chargeonlymode:root/sbin/chargeonlymode \
-
+  
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/dt.img:dt.img
 
@@ -120,7 +116,6 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.usb.default \
     libaudio-resampler \
-    libtinycompress \
     tinycap \
     tinymix \
     tinyplay \
@@ -136,10 +131,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/camera/nvcamera.conf:system/etc/nvcamera.conf \
     $(LOCAL_PATH)/camera/model_frontal.xml:system/etc/model_frontal.xml
 
-# Misc
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/misc/ussrd.conf:system/etc/ussrd.conf \
-    $(LOCAL_PATH)/misc/enctune.conf:system/etc/enctune.conf
 
 # Wifi
 PRODUCT_COPY_FILES += \
